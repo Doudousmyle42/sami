@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joyeux anniversaire Samira 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#ff6fa3;
+  --or:#ffc857;
+  --violet:#7b5cff;
+  --cyan:#5ce1e6;
+  --fond1:#1a0b2e;
+  --fond2:#3a0f4f;
+  --texte:#fff7fb;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--texte);
+  background:linear-gradient(160deg,var(--fond1),var(--fond2) 50%,#5a1650);
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ---------- Ballons en fond ---------- */
+.ballons{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.ballon{
+  position:absolute;bottom:-150px;width:50px;height:64px;
+  border-radius:50% 50% 48% 48%/55% 55% 45% 45%;
+  opacity:.75;animation:monte linear infinite;
+}
+.ballon::after{
+  content:"";position:absolute;left:50%;top:100%;
+  width:1px;height:70px;background:#ffffff66;
+}
+.ballon::before{
+  content:"";position:absolute;top:12px;left:12px;
+  width:10px;height:16px;border-radius:50%;background:#ffffff55;
+}
+@keyframes monte{
+  0%{transform:translateY(0) translateX(0) rotate(-5deg)}
+  50%{transform:translateY(-60vh) translateX(25px) rotate(5deg)}
+  100%{transform:translateY(-130vh) translateX(-15px) rotate(-5deg)}
+}
+
+/* ---------- Confettis ---------- */
+#confettis{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+/* ---------- Sections ---------- */
+section{position:relative;z-index:1;padding:90px 20px;max-width:1000px;margin:0 auto}
+
+/* Hero */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding-top:40px;
+}
+.hero .petit{
+  letter-spacing:6px;text-transform:uppercase;font-size:.9rem;
+  color:var(--or);margin-bottom:10px;animation:apparait 1s ease both;
+}
+.hero h1{
+  font-family:'Great Vibes',cursive;font-weight:400;
+  font-size:clamp(3.2rem,11vw,7.5rem);line-height:1.05;
+  background:linear-gradient(90deg,var(--rose),var(--or),var(--cyan),var(--violet),var(--rose));
+  background-size:300% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:brille 6s linear infinite, apparait 1.2s .2s ease both;
+  filter:drop-shadow(0 0 25px #ff6fa355);
+}
+.hero h2{
+  font-family:'Great Vibes',cursive;font-weight:400;
+  font-size:clamp(2.6rem,9vw,5.5rem);margin-top:5px;
+  animation:apparait 1.2s .5s ease both;
+}
+.hero .gateau{font-size:3.5rem;margin:20px 0;animation:saute 2s ease-in-out infinite}
+@keyframes brille{to{background-position:300% center}}
+@keyframes apparait{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes saute{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.btn{
+  margin-top:10px;padding:14px 34px;border:none;border-radius:50px;cursor:pointer;
+  font-family:inherit;font-size:1rem;font-weight:600;color:#fff;
+  background:linear-gradient(90deg,var(--rose),var(--violet));
+  box-shadow:0 8px 30px #ff6fa366;transition:transform .2s, box-shadow .2s;
+  animation:apparait 1.2s .8s ease both;
+}
+.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 12px 40px #ff6fa399}
+.defile{margin-top:50px;font-size:.85rem;opacity:.7;animation:saute 2s ease-in-out infinite}
+
+/* Titres de section */
+.titre{
+  font-family:'Great Vibes',cursive;font-weight:400;text-align:center;
+  font-size:clamp(2.6rem,7vw,4rem);margin-bottom:40px;color:var(--or);
+  text-shadow:0 0 20px #ffc85755;
+}
+
+/* Message */
+.carte{
+  background:#ffffff12;border:1px solid #ffffff25;border-radius:28px;
+  padding:45px 35px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px #0006;max-width:760px;margin:0 auto;
+}
+.carte p{font-size:1.08rem;line-height:1.9;font-weight:300;margin-bottom:18px}
+.carte .signature{
+  font-family:'Great Vibes',cursive;font-size:2.2rem;text-align:right;
+  color:var(--rose);margin:25px 0 0;
+}
+
+/* Galerie */
+.galerie{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.photo{
+  position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;
+  background:linear-gradient(135deg,#ff6fa333,#7b5cff33);
+  border:2px dashed #ffffff44;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;color:#ffffffaa;
+  transition:transform .4s, box-shadow .4s;
+}
+.photo:nth-child(odd){transform:rotate(-2deg)}
+.photo:nth-child(even){transform:rotate(2deg)}
+.photo:hover{transform:rotate(0) scale(1.04);box-shadow:0 15px 45px #ff6fa366;z-index:2}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo.ok{border:4px solid #fff;background:#fff}
+
+/* Musique */
+#musique{text-align:center}
+.lecteur{
+  background:#ffffff12;border:1px solid #ffffff25;border-radius:28px;
+  padding:40px 25px;max-width:480px;margin:0 auto;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+#musique .disque{
+  width:180px;height:180px;margin:0 auto 25px;border-radius:50%;
+  object-fit:cover;display:block;
+  border:5px solid #ffffff33;
+  box-shadow:0 0 35px var(--rose), inset 0 0 0 4px #000;
+  background:radial-gradient(circle,#222 0 18%,#111 19% 100%);
+  animation:tourne 6s linear infinite;
+  animation-play-state:paused;
+}
+#musique .disque.joue{animation-play-state:running}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.lecteur .info{margin-bottom:20px;font-weight:300;opacity:.85}
+.lecteur audio{width:100%;border-radius:30px}
+
+footer{
+  position:relative;z-index:1;text-align:center;padding:40px 20px 50px;
+  font-size:.9rem;opacity:.75;
+}
+
+/* Apparition au scroll */
+.revele{opacity:0;transform:translateY(40px);transition:opacity 1s, transform 1s}
+.revele.visible{opacity:1;transform:none}
+
+@media (max-width:600px){
+  section{padding:70px 16px}
+  .carte{padding:32px 22px}
+  .carte p{font-size:1rem}
+}
+</style>
+</head>
+<body>
+
+<div class="ballons" id="ballons"></div>
+<canvas id="confettis"></canvas>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <p class="petit">16 novembre</p>
+  <h1>Joyeux Anniversaire</h1>
+  <h2>Samira</h2>
+  <div class="gateau">🎂</div>
+  <button class="btn" id="btnFete">🎉 Fais la fête !</button>
+  <p class="defile">↓ Fais défiler</p>
+</section>
+
+<!-- ===== MESSAGE ===== -->
+<section id="message" class="revele">
+  <h3 class="titre">Pour toi, Samira</h3>
+  <div class="carte">
+    <p>Joyeux anniversaire à une personne rare, lumineuse et pleine de bonté. 💖</p>
+    <p>Merci pour ton sourire qui rend chaque journée plus belle, pour ta gentillesse
+      et pour tous ces moments partagés. Que cette nouvelle année t'apporte tout ce que
+      tu mérites : de la joie, de la réussite, de la santé et des rêves qui se réalisent
+      un par un.</p>
+    <p>Continue de briller comme tu le fais, le monde a besoin de personnes comme toi. 🌟</p>
+    <p class="signature">Avec toute mon amitié, Doudou</p>
+  </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section id="galerie" class="revele">
+  <h3 class="titre">Nos souvenirs 📸</h3>
+  <div class="galerie">
+    <div class="photo"><img src="1.jpeg" alt="Souvenir 1" loading="lazy">📷 Photo 1</div>
+    <div class="photo"><img src="2.jpeg" alt="Souvenir 2" loading="lazy">📷 Photo 2</div>
+    <div class="photo"><img src="3.jpeg" alt="Souvenir 3" loading="lazy">📷 Photo 3</div>
+    <div class="photo"><img src="4.jpeg" alt="Souvenir 4" loading="lazy">📷 Photo 4</div>
+    <div class="photo"><img src="5.jpeg" alt="Souvenir 5" loading="lazy">📷 Photo 5</div>
+    <div class="photo"><img src="6.jpeg" alt="Souvenir 6" loading="lazy">📷 Photo 6</div>
+    <div class="photo"><img src="7.jpeg" alt="Souvenir 7" loading="lazy">📷 Photo 7</div>
+    <div class="photo"><img src="8.jpeg" alt="Souvenir 8" loading="lazy">📷 Photo 8</div>
+  </div>
+</section>
+
+<!-- ===== MUSIQUE ===== -->
+<section id="musique" class="revele">
+  <h3 class="titre">Ta chanson 🎶</h3>
+  <div class="lecteur">
+    <img class="disque" id="disque" src="covers.jpg" alt="Pochette de la chanson">
+    <p class="info"><strong>Yitou — À ta santé</strong><br>Appuie sur lecture et laisse-toi porter ✨</p>
+    <audio id="audio" controls preload="metadata">
+      <source src="Yitou%20-%20%C3%80%20ta%20sant%C3%A9%20(Lyrics%20Vid%C3%A9o).mp3" type="audio/mpeg">
+      Ton navigateur ne lit pas l'audio.
+    </audio>
+  </div>
+</section>
+
+<footer>Fait avec 💖 pour Samira — 16 novembre</footer>
+
+<script>
+/* ---------- Ballons ---------- */
+const couleurs=['#ff6fa3','#ffc857','#7b5cff','#5ce1e6','#ff8c42'];
+const zoneBallons=document.getElementById('ballons');
+for(let i=0;i<15;i++){
+  const b=document.createElement('div');
+  b.className='ballon';
+  b.style.left=Math.random()*100+'vw';
+  b.style.background=couleurs[i%couleurs.length];
+  b.style.animationDuration=(8+Math.random()*10)+'s';
+  b.style.animationDelay=(Math.random()*10)+'s';
+  const t=0.6+Math.random()*0.7;
+  b.style.scale=t;
+  zoneBallons.appendChild(b);
+}
+
+/* ---------- Confettis ---------- */
+const canvas=document.getElementById('confettis');
+const ctx=canvas.getContext('2d');
+let pieces=[];
+function taille(){canvas.width=innerWidth;canvas.height=innerHeight}
+addEventListener('resize',taille);taille();
+
+function lancerConfettis(n=180){
+  for(let i=0;i<n;i++){
+    pieces.push({
+      x:canvas.width/2+(Math.random()-.5)*200,
+      y:canvas.height/3,
+      vx:(Math.random()-.5)*16,
+      vy:-Math.random()*14-4,
+      w:6+Math.random()*6,
+      h:10+Math.random()*8,
+      r:Math.random()*360,
+      vr:(Math.random()-.5)*12,
+      c:couleurs[Math.floor(Math.random()*couleurs.length)],
+      vie:220
+    });
+  }
+}
+function animer(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces.forEach(p=>{
+    p.vy+=0.3;p.vx*=0.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.vie--;
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(p.r*Math.PI/180);
+    ctx.globalAlpha=Math.max(p.vie/220,0);
+    ctx.fillStyle=p.c;
+    ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+    ctx.restore();
+  });
+  pieces=pieces.filter(p=>p.vie>0&&p.y<canvas.height+50);
+  requestAnimationFrame(animer);
+}
+animer();
+addEventListener('load',()=>setTimeout(()=>lancerConfettis(220),400));
+document.getElementById('btnFete').addEventListener('click',()=>lancerConfettis(250));
+
+/* ---------- Photos : afficher l'image si elle existe ---------- */
+document.querySelectorAll('.photo img').forEach(img=>{
+  const ok=()=>img.parentElement.classList.add('ok');
+  if(img.complete&&img.naturalWidth)ok();
+  img.addEventListener('load',ok);
+  img.addEventListener('error',()=>img.remove());
+});
+
+/* ---------- Pochette : disparaît proprement si absente ---------- */
+const disque=document.getElementById('disque');
+disque.addEventListener('error',()=>{disque.removeAttribute('src');disque.alt='';});
+
+/* ---------- Vinyle qui tourne seulement pendant la lecture ---------- */
+const audio=document.getElementById('audio');
+audio.addEventListener('play',()=>{disque.classList.add('joue');lancerConfettis(120)});
+audio.addEventListener('pause',()=>disque.classList.remove('joue'));
+audio.addEventListener('ended',()=>disque.classList.remove('joue'));
+
+/* ---------- Apparition au scroll ---------- */
+const obs=new IntersectionObserver(entrees=>{
+  entrees.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:.15});
+document.querySelectorAll('.revele').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
