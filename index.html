@@ -153,6 +153,19 @@ footer{
   font-size:.9rem;opacity:.75;
 }
 
+/* Écran d'ouverture (débloque le son) */
+#ouverture{
+  position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;text-align:center;padding:20px;
+  background:radial-gradient(circle at center,#3a0f4fee,#1a0b2ef7);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  cursor:pointer;transition:opacity .8s, visibility .8s;
+}
+#ouverture.cache{opacity:0;visibility:hidden}
+#ouverture .cadeau{font-size:5rem;animation:saute 1.6s ease-in-out infinite}
+#ouverture p{font-family:'Great Vibes',cursive;font-size:clamp(2.2rem,8vw,3.4rem);color:var(--or)}
+#ouverture small{opacity:.7;letter-spacing:2px}
+
 /* Apparition au scroll */
 .revele{opacity:0;transform:translateY(40px);transition:opacity 1s, transform 1s}
 .revele.visible{opacity:1;transform:none}
@@ -165,6 +178,12 @@ footer{
 </style>
 </head>
 <body>
+
+<div id="ouverture" class="cache" role="button" tabindex="0" aria-label="Ouvrir la surprise">
+  <div class="cadeau">🎁</div>
+  <p>Ouvre ta surprise, Samira</p>
+  <small>Touche l'écran 🎶</small>
+</div>
 
 <div class="ballons" id="ballons"></div>
 <canvas id="confettis"></canvas>
@@ -298,6 +317,24 @@ const audio=document.getElementById('audio');
 audio.addEventListener('play',()=>{disque.classList.add('joue');lancerConfettis(120)});
 audio.addEventListener('pause',()=>disque.classList.remove('joue'));
 audio.addEventListener('ended',()=>disque.classList.remove('joue'));
+
+/* ---------- Musique lancée dès l'ouverture de la page ---------- */
+/* Les navigateurs bloquent souvent le son automatique : si c'est le cas,
+   on affiche l'écran cadeau et la musique démarre au premier toucher. */
+const ouverture=document.getElementById('ouverture');
+function demarrerMusique(){
+  if(!audio.paused)return;
+  audio.play().then(()=>{
+    ouverture.classList.add('cache');
+    retirerDeblocage();
+  }).catch(()=>{});
+}
+function retirerDeblocage(){
+  ['click','touchstart','keydown'].forEach(ev=>document.removeEventListener(ev,demarrerMusique));
+}
+['click','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,demarrerMusique));
+audio.addEventListener('play',()=>{ouverture.classList.add('cache');retirerDeblocage();},{once:true});
+audio.play().catch(()=>ouverture.classList.remove('cache'));
 
 /* ---------- Apparition au scroll ---------- */
 const obs=new IntersectionObserver(entrees=>{
